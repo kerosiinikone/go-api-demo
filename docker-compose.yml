@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  api:
+    image: docker-api-full
+    build: .
+    restart: always
+    depends_on:
+      - godev
+    container_name: api-go
+    ports:
+      - 8000:8000
+    volumes:
+      - ./prod.yml:/app/local.yml
+  godev:
+    image: postgres
+    restart: always
+    container_name: godev
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: godev
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres:
+  api:

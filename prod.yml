@@ -1,0 +1,1 @@
+dbu: "postgresql://postgres:admin@godev:5432/godev?sslmode=disable"
