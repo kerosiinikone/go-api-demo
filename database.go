@@ -20,8 +20,6 @@ func CreateDBConnection() *dbx.DB {
 	targetDir := filepath.Join(currentDir)
 	configFilePath := filepath.Join(targetDir, "local.yml")
 
-	// migrationsFilePath := filepath.Join(targetDir, "migrations")
-
 	cfg, err := config.Load(configFilePath)
 
 	if err != nil {
@@ -33,22 +31,6 @@ func CreateDBConnection() *dbx.DB {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-
-	// driver, err := postgres.WithInstance(db.DB(), &postgres.Config{})
-
-	// if err != nil {
-	// 	log.Fatal(err.Error())
-	// }
-
-    // m, err := migrate.NewWithDatabaseInstance(
-    //     fmt.Sprintf("file://%s", migrationsFilePath),
-    //     "godev", driver)
-
-	// if err != nil {
-	// 	log.Fatal(err.Error())
-	// }
-
-    // m.Up()
 
 	return db
 }
